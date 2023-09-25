@@ -1,70 +1,50 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### React의 `State(상태)` 관리
 
-In the project directory, you can run:
+`React.useState(default value)` 문법을 통해 state 설정
+function은 `[key, setKey]` 형태의 2개의 array를 리턴
 
-### `npm start`
+```
+ex)
+const [value, setValue] = React.useState(0);
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `useContext`
 
-### `npm test`
+`Redux`는 애플리케이션의 상태를 관리하기 위한 견고하고 안정적인 솔루션을 제공.
+여기저기 흩어져있는 상태를 체계화하여 애플리케이션을 관리하도록 도움
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![엘리멘터리 도움 구조](https://yamoo9.github.io/react-master/images/why-using-redux.jpg)
 
-### `npm run build`
+`hierarchy`에 발생하는 방법을 `props`로 할 경우 하위 node에서 값을 이용해야할 경우 버블링 단계 많음
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`redux`는 외부에 `store`라는 상태 저장소를 두고 하부의 node가 값을 변경시에도 바로 `store`에 접근해서 필요한 node로 접근하여 상태값 사용했어야만 함
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`useContext`는 context가 제공하는 상태와 상태관리자를 전체 맥락에 있는 node가 사용할 수 있게 하는 것
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+How to use `useContext`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+const AppContext = React.createContext();   //1)Context생성
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+...
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+class App () {
+    return (
+        //2)AppContext로 이용범위 구성
+        <AppContext.Provider>
+            <Component1/>
+            <Component2/>
+        </AppContext.Provider>
+    );
+}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+class Component1() {
+    const [a,b,c,d] = React.useContext(AppContext); //3)Context이용 
+    ...
+}
+...
+```
