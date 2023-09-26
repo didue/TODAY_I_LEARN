@@ -39,3 +39,54 @@ AMQP와는 동작 방식이 상이함
 이때 `partition`은 늘릴 수 있지만 줄일 수 없다. 단 `partition`의 `record`는 옵션에 따라 일정 기간 혹은 용량동안 저장된 뒤 데이터가 삭제될 수 있도록 설정할 수 있다.
 
 <br/><br/>
+## Kafka Producer
+
+producer 역할
+
+- topic에 해당하는 메세지를 생성
+- 특정 topic으로 데이터를 publish
+- kafka로 처리 실패/재시도
+* kafka-clients와 kafka broker의 하위호환성이 완벽하지 않으니 호환성 확인 필요
+
+<br/>
+
+카프카 프로듀서로 데이터 전송하기
+
+```
+public class Producer {
+    public static void main(String[] args) throws IOException {
+
+        //1) Producer 설정 정의
+        Properties configs = new Properties();
+        configs.put("bootstrap.servers" , "localhost:9092"); //2개 이상의 브로커 ip, host 설정하기를 권장
+        configs.put("key.serializer"    , "org.apache.kafka.common.serialization.StringSerializer"); //key, value를 직렬화 하기 위한 설정
+        configs.put("value.serializer"  , "org.apache.kafka.common.serialization.StringSerializer");
+
+        //2) Producer Instance 생성(전송할 객체)
+        KafkaProducer<String, String> producer = new KafkaProducer<String, String(configs);
+
+        //3) Record 생성
+        //topic, key, value  또는 topic, value로 선택 정의할 수 있다.
+        ProducerRecord record = new ProducerRecord<String, String>("topic", "key", "value");
+
+        producer.send(record);
+        producer.close();
+    }
+}
+```
+
+<br/><br/>
+## Kafka Broker, Replication, ISR
+
+Kafka Broker는 카프카가 설치되어 잇는 단위. 보통 3개 이상으로 구성하여 사용된다
+
+
+Replication은 파티션의 복제를 뜻함. replication은 복제본을 포함한 파티션의 수로, 브로커의 총 개수보다 많을 수 없다.
+
+예를 들어, partition이 1, replication이 1, broker가 3인 topic이 있다면 아래와 같은 형태일 것이다. 
+![Alt text](./img/image-replication1.png)
+
+여기서 replication이 2가 된다면, partition은 원본 1개와 복제본 1개로 총 2가 존재한다
+![Alt text](./img/image-replication2.png)
+
+
