@@ -8,7 +8,6 @@ var result = nums.filter((num) => num < 400);
 console.log(result);
 
 
-
 /** 문제2 : 배열의 내장함수
  * <pass>부분에 내장함수를 이용하여 코드를 입력하고 다음과 같이 출력되게 하세요.
  * 
@@ -86,8 +85,10 @@ arr.splice(2, 0, 10000);
  */
 
 //Answer
-(2), (3)
-// => 논리연산자가 포함되는 변수명X, let과 같은 예약어는 변수명X
+(3), (5)
+// => Javascript의 식별자는 문자, 언더바(_), 달러($)로 시작해야함.
+// let은 javascript의 예약어이므로 변수명으로 사용불가
+
 
 
 /** 문제8 : 객체의 키 이름 중복
@@ -156,5 +157,5 @@ for(var i=0 ; i<5 ; i++){
     document.write("*");
   }
   //줄바꾸기
-  document.write("<br>");
+  document.write("<br/>");
 }
