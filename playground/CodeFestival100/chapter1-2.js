@@ -81,9 +81,11 @@ console.log(`안녕하세요. 저는 ${prompt('이름')}입니다.`);
  * 문장이 입력되면 거꾸로 출력하는 프로그램을 만들어 봅시다.
  */
 const n = prompt('입력 :').split('');
-const result = [];
-
 //Answer
+//1)
+console.log(n.split('').reverse().join(''));
+//2)
+const result = [];
 for(var i=0 ; i<=n.length/2 ; i++){
     console.log(i + ": " + n[n.length-i]);
     result[i] = n[n.length-i];
