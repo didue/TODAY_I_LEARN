@@ -1,6 +1,6 @@
 # 옵셔널 체이닝 ‘?.'
 
-![thumnail](./thumnail_optionalchaining.png)
+![thumnail](./img/thumnail_optionalchaining.png)
 
 
 
