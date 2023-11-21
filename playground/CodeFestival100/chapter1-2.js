@@ -83,7 +83,7 @@ console.log(`안녕하세요. 저는 ${prompt('이름')}입니다.`);
 const n = prompt('입력 :').split('');
 //Answer
 //1)
-console.log(n.split('').reverse().join(''));
+console.log(n.split('').reverse().join(''));    
 //2)
 const result = [];
 for(var i=0 ; i<=n.length/2 ; i++){

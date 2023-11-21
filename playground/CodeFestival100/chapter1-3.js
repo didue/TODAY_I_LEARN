@@ -38,7 +38,8 @@ console.log(Math.sqrt(radius) * 3.14);
 
 /** 문제26 : 행성문제2
  * 태양계를 이루는 행성의 한글이름을 입력하면 영어 이름을 반환하는 프로그램을 만들기 
- */
+*/
+let input = prompt("행성의 한글이름:");
 let planets = [
     { "ko" : "수성" , "en" : "Mercury" },
     { "ko" : "금성" , "en" : "Venus" },
@@ -49,7 +50,6 @@ let planets = [
     { "ko" : "천왕성", "en" : "Uranus" },
     { "ko" : "해왕성", "en" : "Neptune" },
 ];
-let input = prompt("행성의 한글이름:");
 let target = planets.find(({ko}) => ko == input);
 console.log(target.en);
 
