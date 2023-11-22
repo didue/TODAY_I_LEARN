@@ -8,9 +8,33 @@
  */
 function mergeSort(arr){
   //1) 길이가 0 또는 1이면 정렬된 배열
-  if(arr.length === 0 || arr.length === 1)  return arr;
+  if(arr.length <= 1)  return arr;
 
+  const mid = Math.floor(arr.length/2);
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
 
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+  let arr = [];
+  while(left.length && right.length) {
+    if(left[0] < right[0]){
+      result.push(left.shift());
+    }else {
+      result.push(right.shift());
+    }
+  }
+  
+  while(left.length) {
+    result.push(left.shift());
+  }
+  while(right.length) {
+    result.push(right.shift());
+  }
+
+  return result;
 }
 
 const array1 = prompt('배열을 입력하세요').split(' ').map(n => parseInt(n, 10));
@@ -54,3 +78,65 @@ console.log(quickSort(array2));
  * 입력으로 주어진 괄호 문자열이 바른지 YES/NO로 판별하여 출력해보자.
  */
 let figure = prompt("괄호 문자열을 입력하세요: ").split("");
+
+
+
+/** 문제54 : 연속되는 수
+ * 은주는 놀이공원 아르바이트를 하고 있다. 은주가 일하는 놀이공원에서는 현재 놀이공원 곳곳에 숨겨진 숫자 스탬프를 모아 오면 선물을 주는 이벤트를 하고 있다. 숫자 스탬프는 매일 그 수와 스탬프에 적힌 숫자가 바뀌지만 그 숫자는 항상 연속된다. 
+ * 그런데 요즘 다른 날에 찍은 스탬프를 가지고 와 선물을 달라고 하는 손님이 늘었다.
+ * 스탬프에 적힌 숫자가 공백으로 구분되어 주어지면 이 숫자가 연속수인지 아닌지 "YES"와 "NO"로 판별하는 프로그램을 작성하시오
+ * 
+ * -예1) 입력: 1 2 3 4 5 / 출력 : YES
+ * -예2) 입력: 1 4 2 6 3 / 출력 : NO 
+*/
+function solution(arr) {
+  let len = arr.length;
+  let mid = arr[~~(len/2)];
+
+  arr.sort((x,y)=> x-y);
+  
+  for(var i=0 ; i<len-1 ; i++){
+    let sum = Math.ceil((arr[i] + arr[len-1-i])/2);
+    if(sum !== mid) return false;
+  }
+  return true;
+}
+
+
+let stamps = prompt("놀이공원의 스탬프: ").split(" ").map(n => parseInt(n));
+console.log(solution(stamps)? "YES" : "NO");
+
+
+
+/** 문제55:하노이의 탑
+ * 하노이의 탑은 프랑스 수학자 에두아르드가 처음으로 발표한 게임입니다. 하노이의 탑은 A, B, C 3개의 기둥과 기둥에 꽂을 수 있는 N 개의 원판으로 이루어져 있습니다. 이 게임에서는 다음의 규칙을 만족해야 합니다.
+ *
+ * 1. 처음에 모든 원판은 A 기둥에 꽂혀 있다.
+ * 2. 모든 원판의 지름은 다르다.
+ * 3. 이 원반은 세 개의 기둥 중 하나에 반드시 꽂혀야 한다.
+ * 4. 작은 원반 위에 큰 원반을 놓을 수 없다.
+ * 5. 한 번에 하나의 원판(가장 위에 있는 원판)만을 옮길 수 있다.
+ * 
+ * 이 규칙을 만족하며 A 기둥에 있는 원반 N 개를 모두 C 원반으로 옮기고 싶습니다.
+ * 모든 원반을 옮기기 위해 실행되어야 할 최소 원반 이동 횟수를 계산하는 프로그램을 완성해 주세요.
+ */
+const route = [];
+
+function hanoi(num, start, end, temp){
+  //원판이 한 개일 때에는 바로 옮기면 됩니다.
+  if (num === 1) {
+    route.push([start, end]);
+    return NaN;
+  }
+
+  //원반이 n-1개를 경유기둥으로 옮기고
+  hanoi(/*내용을 채워주세요.*/);
+  //가장 큰 원반은 목표기둥으로
+  route.push(/*내용을 채워주세요.*/);
+  //경유기둥과 시작기둥을 바꿉니다.
+  hanoi(/*내용을 채워주세요.*/);
+}
+
+hanoi(3, 'A', 'B', 'C');
+console.log(route);
+console.log(route.length);
