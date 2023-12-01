@@ -66,3 +66,16 @@ for(let s of arr){
  * -입력 : N
  * -출력 : 가장 적게 옮길 수 있는 횟수(만약 어떻게 해도 정량이 N이 되지 않는다면 -1을 출력합니다.)
  */
+let weight = parseInt(prompt("무게 N: "));
+let leastCnt = 9999;
+
+for(let i=weight/7 ; i >= 0 ; i--) {
+    let x = weight/7;
+    let y = (weight/7)/3;
+
+    if((weight/7)%3 !== 0) break;
+
+    if(leastCnt < x+y) break;
+
+    leastCnt = x + y;
+}
