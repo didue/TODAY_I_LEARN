@@ -4,9 +4,12 @@
  * - popup.html = index.html 
  */
 
-const $b_manager = document.getElementById('b-manager-btn');
+const $badge = document.getElementById('badge');
+const $badge_box = document.getElementById('badge-box');
+
 
 /** */
-document.addEventListener('click', () => {
-
+$badge.addEventListener('click', () => {
+    let className = $badge_box.getAttribute('class') == 'open'? 'close' : 'open';
+    $badge_box.setAttribute('class', className);
 });

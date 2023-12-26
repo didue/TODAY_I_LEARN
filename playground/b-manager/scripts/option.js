@@ -1,7 +1,7 @@
-const toggleList = document.querySelectorAll(".toggleSwitch");
+const $toggleSwitch = document.getElementById('toggleSwitch');
 
-toggleList.forEach(($toggle) => {
-  $toggle.onclick = () => {
-    $toggle.classList.toggle('active');
-  }
+$toggleSwitch.addEventListener('click', ()=> {
+  
+  //TODO : b-manager onoff하기
+
 });
