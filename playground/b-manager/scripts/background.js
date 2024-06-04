@@ -3,11 +3,10 @@
 
         chrome.storage.sync.set({ 
             toggle : false,
-            htmlString : html
+            // htmlString : html
         });
 
-        chrome.scripting
-            .registerContentScripts([{
+        chrome.scripting.registerContentScripts([{
             id: "session-script",
             js: ["content.js"],
             persistAcrossSessions: false,
@@ -19,6 +18,21 @@
 
         console.log('on installed b-mananger! ');
     });
+
+    
+    chrome.action.onClicked.addListener(async (tab) => {
+        console.log(tab.url);
+        if(tab.url.startsWith(naver) && isAllowPath) {
+            const prevState = await chrome.action.getBadgeText({tabId : tab.id});
+            const nextState = prevState === "ON"? "OFF" : "ON";
+
+            await chrome.action.setBadgeText({
+                tabId : tab.id,
+                text : nextState,
+            })
+        }
+    })
+
 
     //
     chrome.runtime.onMessage.addListener((r,c,t) => {
@@ -42,6 +56,12 @@
         ).catch(e=>console.error("\uC2A4\uD06C\uB9BD\uD2B8 \uC0BD\uC785 \uC624\uB958: ", e)))
     });
 })();
+
+
+const urlParams = new URLSearchParams(document.location.search)
+const isAllowPath = urlParams.get("Redirect") === "Write" ||  urlParams.get("Redirect") === "Update" 
+const naver = 'https://blog.naver.com/'
+const webstore = 'https://developers.chrome.com/docs/webstore'
 
 const html = `
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />

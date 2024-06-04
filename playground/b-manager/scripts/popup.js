@@ -5,8 +5,10 @@ chrome.storage.sync.get('toggle', ({ tf }) => {
     toggleSwitch.checked = tf;
 });
 
-//b매니저 버튼 click event handler
+//b매니저 토글 버튼 click event handler
+const naverBlog = "https://blog.naver.com/";
 $toggleButton.addEventListener('click', async () => {
+
     chrome.storage.sync.set({toggle : toggleSwitch.checked});
 
     let [tab] = await chrome.tabs.query({ active : true, currentWindow : true });
