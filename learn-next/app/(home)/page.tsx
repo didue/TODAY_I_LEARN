@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 export const matadata = {
     title : "Home",
@@ -16,7 +17,9 @@ export default async function HomePage() {
     return (
         <div>
             <h1>Hello, Next.js!</h1>
-            {JSON.stringify(movies)}
+            {movies.map((movie) => {
+                <li><Link href={`/movies/${movie.id}`}>{movie.title}</Link></li>
+            })}
         </div>
     )
 }
