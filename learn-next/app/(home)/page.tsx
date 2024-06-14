@@ -4,22 +4,24 @@ export const matadata = {
     title : "Home",
 }
 
-const URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
-
+export const BASE_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 const getMovies = async () => {
-    return (await fetch(URL)).json();
+    return (await fetch(BASE_URL)).json();
 }
 
 export default async function HomePage() {
 
     const movies = await getMovies();
+    console.log(movies);
 
     return (
         <div>
             <h1>Hello, Next.js!</h1>
-            {movies.map((movie) => {
-                <li><Link href={`/movies/${movie.id}`}>{movie.title}</Link></li>
-            })}
+            <ul>
+                {movies?.map((movie) => {
+                    return <li key={movie.id}><Link href={`/movies/${movie.id}`}>{movie.title}</Link></li>
+                })}
+            </ul>
         </div>
     )
 }
