@@ -1,7 +1,8 @@
 import { BASE_URL } from "../app/(home)/page";
+import styles from '../style/movie-info.module.css'
 
 /** 영화 상세 정보 조회 */
-async function getMovie(id: string) {
+export async function getMovie(id: string) {
     const response = await fetch(`${BASE_URL}/${id}`);
     return response.json();
 }
@@ -9,5 +10,16 @@ async function getMovie(id: string) {
 export default async function MovieInfo({id}: {id: string}) {
 
     const movie = await getMovie(id);
-    return <h1>{movie.title}</h1>
+    
+    return (
+        <div className={styles.container}>
+            <img src={movie.poster_path} alt={movie.title} className={styles.poster} />
+            <div className={styles.info}>
+                <h1 className={styles.title}>{movie.title}</h1>
+                <h3>⭐{movie.vote_average.toFixed(1)}</h3>
+                <p>{movie.overview}</p>
+                <a href={movie.homepage} target="_blank">Homepage &rarr;</a>
+            </div>
+        </div>
+    )
 }

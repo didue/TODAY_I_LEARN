@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Movie from "../../components/movie";
+import styels from '../../style/home.module.css'
 
 export const matadata = {
     title : "Home",
@@ -15,13 +16,8 @@ export default async function HomePage() {
     console.log(movies);
 
     return (
-        <div>
-            <h1>Hello, Next.js!</h1>
-            <ul>
-                {movies?.map((movie) => {
-                    return <li key={movie.id}><Link href={`/movies/${movie.id}`}>{movie.title}</Link></li>
-                })}
-            </ul>
+        <div className={styels.container}>
+            {movies?.map((movie) => <Movie key={movie.id} {...movie} />)}
         </div>
     )
 }
