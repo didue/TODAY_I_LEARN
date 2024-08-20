@@ -1,11 +1,10 @@
-String sayHello(String name, int age, String country) {
-    return "Hello, $name, you are $age from $country";
+typedef UserInfo = Map<String, String>;
+
+
+String sayHi(Map<String, String> userInfo) {
+  return "Hi ${userInfo['name']}";
 }
 
 void main() {
-  print(sayHello(
-    age : 19, 
-    name :'nico', 
-    country: 'cuba'
-  ));
+ print(sayHi({'name' : 'didue'}));
 }
