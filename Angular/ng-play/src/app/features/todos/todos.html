@@ -1,0 +1,17 @@
+<h2>Todos</h2>
+
+<input #todoInput placeholder="What needs to be done?" />
+<button (click)="add(todoInput.value); todoInput.value = ''">Add</button>
+
+<ul>
+  <li *ngFor="let t of todos()">
+    <label>
+      <input type="checkbox" [checked]="t.done" (change)="toggle(t.id)" />
+      <span [style.textDecoration]="t.done ? 'line-through' : 'none'">
+        {{ t.text }}
+      </span>
+    </label>
+  </li>
+</ul>
+
+<p *ngIf="todos().length === 0">No todos yet.</p>
