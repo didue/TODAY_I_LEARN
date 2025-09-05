@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-//imports
-import { Counter } from './features/counter/counter';
-import { Todos } from './features/todos/todos';
 import { NgIf, NgFor } from '@angular/common';
+//imports
+// import { Counter } from './features/counter/counter';
+import { Todos } from './features/todos/todos';
+import { ProductsPage } from './features/products/products-page/products-page';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,9 @@ import { NgIf, NgFor } from '@angular/common';
   imports: [
     RouterOutlet,
     //자식 컴포넌트
-    Counter,
+    // Counter,
     Todos,
+    ProductsPage,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

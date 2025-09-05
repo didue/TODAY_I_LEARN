@@ -1,5 +1,5 @@
 <article class="item">
   <div class="name">{{ product().name }}</div>
-  <div class="price">{{ product().price | number }}원</div>
-  <button type="button" (click)="onClickHeart()">{{ product().liked ? '💖' : '🤍' }}</button>
+  <div class="price">{{ product().price }}원</div>
+  <button type="button" (click)="onClickHeart()">{{ product().liked ? '💖' : '🤍' }} Like</button>
 </article>

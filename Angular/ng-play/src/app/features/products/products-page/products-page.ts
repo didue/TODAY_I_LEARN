@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { ProductService } from '../../../core/product/product.service';
-import { ProductItem } from '../product-item/product-item';
 import { NgFor } from '@angular/common';
+import { ProductItem } from '../product-item/product-item';
+import { ProductService } from '../../../core/product/product.service';
 
 @Component({
   selector: 'app-products-page',
@@ -11,23 +11,25 @@ import { NgFor } from '@angular/common';
   styleUrl: './products-page.scss',
 })
 export class ProductsPage {
-  //service 클래스 inject
-  private productSvc = inject(ProductService);
+  private svc = inject(ProductService);
 
-  //서비스 신호 읽기
-  products = this.productSvc.products;
-  likedCount = this.productSvc.liekdCount;
+  // 서비스에서 신호 읽기
+  products = this.svc.products;
+  likedCount = this.svc.likedCount;
 
-  //검색어 변수(로컬 상태 값)
+  // 검색어(로컬 상태)
   q = signal('');
-  //필터 검색결과
-  filterd = computed(() => {
+  filtered = computed(() => {
     const q = this.q().trim().toLowerCase();
     if (!q) return this.products();
     return this.products().filter((p) => p.name.toLowerCase().includes(q));
   });
 
   onToggleLike(id: number) {
-    this.productSvc.toggleLike(id);
+    this.svc.toggleLike(id);
+  }
+  onInput(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.q.set(value);
   }
 }

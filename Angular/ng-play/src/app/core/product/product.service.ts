@@ -18,7 +18,7 @@ export class ProductService {
 
   //공개용 읽기 api(computed로 파생값 생성, 원본 수정X)
   readonly products = this._products.asReadonly();
-  readonly liekdCount = computed(() => this._products().filter((p) => p.liked).length);
+  readonly likedCount = computed(() => this._products().filter((p) => p.liked).length);
 
   toggleLike(id: number) {
     this._products.update((list) => list.map((p) => (p.id === id ? { ...p, liked: !p.liked } : p)));

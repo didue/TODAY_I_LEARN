@@ -16,11 +16,48 @@
 
 ### `@Output`
 
+- 자식컴포넌트에서 부모컴포넌트로 데이터를 전송할때 사용한다.
+- 자식 컴포넌트에서 @Output 데코레이터와 EventEmitter, emit 메소드를 이용하여 데이터를 전송한다
+- 부모 컴포넌트에서는 $event메소드로 값을 전달 받는다.
+
+Example
+
+```javascript
+//
+import { Output, EventEmitter } from '@angular/core';
+
+export class ChildComponent implements OnInit {
+  constructor() {
+    //생성자 (프로그램이 실행될때 한번 실행된다.)
+    this.sendData(); //sendData 함수 실행
+  }
+
+  @Output() postData = new EventEmitter(); //부모로 보낼 변수 이름
+
+  data = 'Post Data !!';
+
+  sendData() {
+    postData.emit(this.data); // emit메소드로 데이터를 보낸다.
+  }
+}
+```
+
+```html
+//app-parent-component.html // 자식컴포넌트에서 전송한 postData를 $event메소드로 전달 받는다.
+<app-child-component (postData)="showData($event)"></app-child-component>
+```
+
+```javascript
+//app-parent-component.ts
+showData(data){
+	console.log(data) // 출력되는 데이터는 Post Data !! 이다.
+}
+```
+
 ## 서비스/DI
 
-## 라우팅(Standalone)
+## How to use `ng`
 
-\*How to use `ng`
 `ng`는 `NgModule`로 앵귤러 모듈
 💡 `ng g`는 **generate** (코드생성)이고, `g` 또는 `c` 스케메틱은 각각 의미를 갖는다.
 

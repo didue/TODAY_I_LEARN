@@ -1,15 +1,12 @@
 <h2>Products</h2>
+
 <div class="toolbar">
-  <input
-    type="text"
-    placeholder="검색 : Angular, RxJs..."
-    (input)="q:set(($event.target as HTMLInputElement).value)"
-  />
+  <input placeholder="검색: Angular, RxJS..." (input)="onInput($event)" />
   <span>Liked: {{ likedCount() }}</span>
 </div>
 
 <ul>
-  <li *ngFor="let p of filterd()">
-    <app-product-item></app-product-item>
+  <li *ngFor="let p of filtered()">
+    <app-product-item [product]="p" (toggleLike)="onToggleLike($event)"></app-product-item>
   </li>
 </ul>
