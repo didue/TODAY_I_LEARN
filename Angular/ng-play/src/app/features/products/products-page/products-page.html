@@ -2,11 +2,22 @@
 
 <div class="toolbar">
   <input placeholder="검색: Angular, RxJS..." (input)="onInput($event)" />
-  <span>Liked: {{ likedCount() }}</span>
+  <ul>
+    <li>
+      <span>Liked: {{ likedCount() }}</span>
+    </li>
+    <li>
+      <span>Cart: {{ itemCount() }}</span>
+    </li>
+  </ul>
 </div>
-
+<hr />
 <ul>
   <li *ngFor="let p of filtered()">
-    <app-product-item [product]="p" (toggleLike)="onToggleLike($event)"></app-product-item>
+    <app-product-item
+      [product]="p"
+      (toggleLike)="onToggleLike($event)"
+      (addToCart)="onAddToCart($event)"
+    ></app-product-item>
   </li>
 </ul>

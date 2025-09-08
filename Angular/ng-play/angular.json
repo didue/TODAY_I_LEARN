@@ -17,7 +17,8 @@
             "outputMode": "server",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"]
+            "styles": ["src/styles.scss"],
+            "tsConfig": "tsconfig.app.json"
           },
           "configurations": {
             "production": {

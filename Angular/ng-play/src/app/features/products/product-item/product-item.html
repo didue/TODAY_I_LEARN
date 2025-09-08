@@ -1,5 +1,11 @@
 <article class="item">
-  <div class="name">{{ product().name }}</div>
-  <div class="price">{{ product().price }}원</div>
-  <button type="button" (click)="onClickHeart()">{{ product().liked ? '💖' : '🤍' }} Like</button>
+  <a [routerLink]="['/products', product().id]" class="info">
+    <div class="name">{{ product().name }}</div>
+    <div class="price">{{ product().price }}원</div>
+  </a>
+
+  <div class="actions">
+    <button type="button" (click)="onClickHeart()">{{ product().liked ? '💖' : '🤍' }} Like</button>
+    <button type="button" (click)="onClickCart()">🛒 장바구니</button>
+  </div>
 </article>

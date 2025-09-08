@@ -1,0 +1,12 @@
+<!-- src/app/features/products/product-detail/product-detail.html -->
+<nav><a routerLink="/products">← 목록으로</a></nav>
+
+<section *ngIf="product; else notFound">
+  <h2>{{ product.name }}</h2>
+  <p>가격: {{ product.price }}원</p>
+  <p>좋아요: {{ product.liked ? '💖' : '🤍' }}</p>
+</section>
+
+<ng-template #notFound>
+  <p>상품을 찾을 수 없어요.</p>
+</ng-template>

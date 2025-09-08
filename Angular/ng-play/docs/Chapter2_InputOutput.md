@@ -3,6 +3,7 @@
 ## Store
 
 `signal`로 보관할 전역 상태 변수 관리 및 `computed`로 파생값 관리
+`signal`은 내부적으로 값과 구독 로직을 **캡슐화**해두고, `getter`역할을 `()`로 호출하여 사용.
 
 ## 컴포넌트 통신(@Input/@Output)
 

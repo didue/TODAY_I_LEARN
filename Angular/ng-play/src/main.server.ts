@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import 'zone.js/node';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { App } from './app/app';

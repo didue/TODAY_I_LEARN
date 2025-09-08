@@ -1,0 +1,17 @@
+/* src/app/features/products/product-item/product-item.scss */
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  transition: box-shadow 0.2s;
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}

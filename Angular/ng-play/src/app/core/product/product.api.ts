@@ -13,4 +13,11 @@ export class ProductApi {
   create(dto: CreateProductDto) {
     return this.http.post<Product>(`${this.base}/products`, dto);
   }
+
+  getAll() {
+    return this.http.get<Product[]>(`${this.base}/products`);
+  }
+  getById(id: number) {
+    return this.http.get<Product[]>(`${this.base}/products/${id}`);
+  }
 }
