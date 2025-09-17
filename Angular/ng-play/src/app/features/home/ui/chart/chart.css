@@ -1,0 +1,28 @@
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 160px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.bar {
+  position: relative;
+  width: 28px;
+  background: #c7d2fe; /* indigo-200 느낌 */
+  border-radius: 6px 6px 0 0;
+  transition: height 320ms ease;
+}
+
+.bar .label {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -6px);
+  font-size: 10px;
+  color: #374151;
+  white-space: nowrap;
+}

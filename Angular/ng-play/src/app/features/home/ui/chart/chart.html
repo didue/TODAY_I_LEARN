@@ -1,0 +1,10 @@
+<div class="chart">
+  <div
+    class="bar"
+    *ngFor="let v of data()"
+    [ngStyle]="{ height: (v / max()) * 100 + '%' }"
+    title="{{ v }}"
+  >
+    <span class="label">{{ v }}</span>
+  </div>
+</div>

@@ -13,11 +13,16 @@ export class ProductApi {
   create(dto: CreateProductDto) {
     return this.http.post<Product>(`${this.base}/products`, dto);
   }
-
+  //상품 목록 조회
   getAll() {
     return this.http.get<Product[]>(`${this.base}/products`);
   }
+  //상품 상세 조회
   getById(id: number) {
     return this.http.get<Product[]>(`${this.base}/products/${id}`);
+  }
+  //추천 상품 조회
+  getRelated(id: number) {
+    return this.http.get<Product[]>(`${this.base}/products/${id}/related`);
   }
 }

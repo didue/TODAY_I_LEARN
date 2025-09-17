@@ -3,9 +3,11 @@ import { HomePage } from './features/home/home-page/home-page';
 import { productsResolver } from './core/product/products.resolver';
 import { authGuard } from './core/guard/auth.gard';
 import { CartPage } from './features/cart/cart-page/cart-page';
+import { LoginPage } from './features/auth/login-page/login-page';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
+  { path: 'login', component: LoginPage },
   {
     path: 'products',
     // 지연 로딩: 단일 컴포넌트도 loadComponent로 가능

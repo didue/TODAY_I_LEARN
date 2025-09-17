@@ -1,4 +1,4 @@
-<h2>Products</h2>
+<h2>상품 페이지</h2>
 
 <div class="toolbar">
   <input placeholder="검색: Angular, RxJS..." (input)="onInput($event)" />
@@ -12,7 +12,8 @@
   </ul>
 </div>
 <hr />
-<ul>
+<!-- Angular 16이전 코드 스타일 -->
+<!-- <ul>
   <li *ngFor="let p of filtered()">
     <app-product-item
       [product]="p"
@@ -20,4 +21,18 @@
       (addToCart)="onAddToCart($event)"
     ></app-product-item>
   </li>
+</ul> -->
+<!-- Angular 16+ 코드 스타일 -->
+<ul>
+  @if(filtered().length > 0) { @for(p of filtered(); track p.id) {
+  <li>
+    <app-product-item
+      [product]="p"
+      (toggleLike)="onToggleLike($event)"
+      (addToCart)="onAddToCart($event)"
+    ></app-product-item>
+  </li>
+  } } @else {
+  <li>검색 결과가 없습니다.😥</li>
+  }
 </ul>

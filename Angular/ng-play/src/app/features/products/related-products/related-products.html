@@ -1,0 +1,19 @@
+<section class="related">
+  <h3>💖 추천상품</h3>
+
+  <ng-container *ngIf="!loading(); else loadingTpl">
+    <p class="error" *ngIf="error()">{{ error() }}</p>
+    <ul *ngIf="!error()">
+      <li *ngFor="let p of items()">
+        <a [routerLink]="['/products', p.id]">
+          <b>{{ p.name }}</b> >> {{ p.price }}원
+        </a>
+      </li>
+      <li *ngIf="items().length === 0">추천할 상품이 없어요😅</li>
+    </ul>
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <p class="muted">추천할 상품을 불러오는 중...🤔</p>
+  </ng-template>
+</section>

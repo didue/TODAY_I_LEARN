@@ -1,6 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Product } from '../../../core/product/product.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-item',
@@ -10,6 +10,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './product-item.scss',
 })
 export class ProductItem {
+  //router 주입
+  private router = inject(Router);
+
   // 최신 문법: input()/output() (v16+)
   product = input.required<Product>();
 
@@ -22,5 +25,8 @@ export class ProductItem {
   }
   onClickCart() {
     this.addToCart.emit(this.product().id);
+  }
+  goDetail(product: Product) {
+    this.router.navigate(['/products', product.id], { state: { product } });
   }
 }

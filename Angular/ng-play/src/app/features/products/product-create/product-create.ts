@@ -7,7 +7,7 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-product-create',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [NgIf, ReactiveFormsModule],
   templateUrl: './product-create.html',
   styleUrl: './product-create.scss',
 })

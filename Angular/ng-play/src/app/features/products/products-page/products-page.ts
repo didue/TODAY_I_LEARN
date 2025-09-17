@@ -1,14 +1,13 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { ProductItem } from '../product-item/product-item';
-import { ProductService } from '../../../core/product/product.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CartService } from '../../../core/cart/cart.service';
+import { ProductService } from '../../../core/product/product.service';
+import { ProductItem } from '../product-item/product-item';
 
 @Component({
   selector: 'app-products-page',
   standalone: true,
-  imports: [NgFor, RouterLink, ProductItem],
+  imports: [RouterLink, ProductItem],
   templateUrl: './products-page.html',
   styleUrl: './products-page.scss',
 })
@@ -45,5 +44,8 @@ export class ProductsPage {
     console.log('🚀 ~ ProductsPage ~ onAddToCart ~ onAddToCart:', id);
     const product = this.products().find((l) => l.id === id);
     if (product) this.cartSvc.add(product, 1);
+  }
+  onClearCart() {
+    this.cartSvc.clear();
   }
 }
